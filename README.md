@@ -1,5 +1,5 @@
 # s_log_safe
-一个采用MIT License协议开源的、小巧的、基于s_log(https://github.com/smallerxuan/s_log.git)开源库和s_ring_buffer(https://github.com/smallerxuan/s_ring_buffer.git)开源库打造的一款线程安全的嵌入式log库，纯C语言实现，移植、使用方便、快捷。在s_log原有的输出等级控制功能、log重定向功能、彩色log输出功能基础之上提供了线程安全支持。
+一个采用MIT License协议开源的、小巧的、基于s_log ( https://github.com/smallerxuan/s_log.git ) 开源库和s_ring_buffer ( https://github.com/smallerxuan/s_ring_buffer.git ) 开源库打造的一款线程安全的嵌入式log库，纯C语言实现，移植、使用方便、快捷。在s_log原有的输出等级控制功能、log重定向功能、彩色log输出功能基础之上提供了线程安全支持。
 
 ## 文件结构
 s_log_safe中使用到了s_log和s_ring_buffer，整体文件结构如下：  
