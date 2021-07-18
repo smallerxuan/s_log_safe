@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "s_log_safe_platform.h": "c",
-        "s_ring_buffer.h": "c",
-        "s_ring_buffer_platform.h": "c",
-        "s_log_safe.h": "c",
-        "s_log.h": "c"
-    }
-}
