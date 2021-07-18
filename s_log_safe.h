@@ -13,7 +13,7 @@ extern "C" {
 /**
  * s_log_safe版本号（V主版本号.次版本号.版本内修改序号）
  */
-#define S_LOG_SAFE_VERSION						"V0.0.2"
+#define S_LOG_SAFE_VERSION						"V0.0.3"
 
 #if S_LOG_SAFE_OPT_LVL >= S_LOG_SAFE_OPT_ASSERT
     #define s_log_safe_assert(tag, file, func,line, fmt, ...) \

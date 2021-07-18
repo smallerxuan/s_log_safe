@@ -106,6 +106,7 @@ static void s_log_safe_output(void)
                                   s_log_safe_log_element_p->log_line,"%s",s_log_safe_log_element_p->log_main_body);
                 break;
         }
+        
         if(s_log_safe_null != s_log_safe_log_element_p->tag)
             s_log_safe_free(s_log_safe_log_element_p->tag);
         if(s_log_safe_null != s_log_safe_log_element_p->log_file)
@@ -207,6 +208,7 @@ int s_log_safe_out(const char*         tag,
     int err = 0;
     unsigned int write_count = 0;
     unsigned char log_level_limit_temp = log_level_limit;
+    char*         log_main_body_temp   = log_main_body;
 
     log_level_limit_temp = (log_level_limit_temp > S_LOG_SAFE_OPT_DEBUG) ? (S_LOG_SAFE_OPT_DEBUG) : (log_level_limit_temp);
     if(log_level > log_level_limit_temp) {
@@ -232,9 +234,8 @@ int s_log_safe_out(const char*         tag,
     s_log_safe_memset(s_log_safe_log_element_p->log_func, 0, (s_log_safe_strlen(log_func)+1));
     s_log_safe_memcpy(s_log_safe_log_element_p->log_func, log_func, s_log_safe_strlen(log_func));
 
-    s_log_safe_log_element_p->log_main_body = s_log_safe_malloc(sizeof(char)*(s_log_safe_strlen(log_main_body)+1));
-    s_log_safe_memset(s_log_safe_log_element_p->log_main_body, 0, (s_log_safe_strlen(log_main_body)+1));
-    s_log_safe_memcpy(s_log_safe_log_element_p->log_main_body, log_main_body, s_log_safe_strlen(log_main_body));
+    s_log_safe_log_element_p->log_main_body = log_main_body_temp;
+    log_main_body_temp = s_log_safe_null;
 
     s_log_safe_log_element_p->log_level = log_level;
     s_log_safe_log_element_p->log_line  = log_line;
@@ -253,5 +254,9 @@ s_log_safe_out_retry:
     }
 
 s_log_safe_out_out:
+    if(s_log_safe_null != log_main_body_temp) {
+        s_log_safe_free(log_main_body_temp);
+        log_main_body_temp = s_log_safe_null;
+    }
     return ret;
 }

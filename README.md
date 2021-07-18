@@ -62,5 +62,7 @@ V0.0.1(first commit):
         首次发布，基础功能支持  
 V0.0.2:  
         支持tag log输出级别限制自定义，支持不同的tag设置不同的 log输出级别限制     
+V0.0.3:  
+        修复s_log_safe.c文件，s_log_safe_out()接口中的内存泄露     
 ```		
 
