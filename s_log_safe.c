@@ -107,14 +107,19 @@ static void s_log_safe_output(void)
                 break;
         }
         
-        if(s_log_safe_null != s_log_safe_log_element_p->tag)
+        if(s_log_safe_null != s_log_safe_log_element_p->tag){
             s_log_safe_free(s_log_safe_log_element_p->tag);
+        }
         if(s_log_safe_null != s_log_safe_log_element_p->log_file)
+        {
             s_log_safe_free(s_log_safe_log_element_p->log_file);
-        if(s_log_safe_null != s_log_safe_log_element_p->log_func)
+        }
+        if(s_log_safe_null != s_log_safe_log_element_p->log_func){
             s_log_safe_free(s_log_safe_log_element_p->log_func);
-        if(s_log_safe_null != s_log_safe_log_element_p->log_main_body)
+        }
+        if(s_log_safe_null != s_log_safe_log_element_p->log_main_body){
             s_log_safe_free(s_log_safe_log_element_p->log_main_body);
+        }
         s_log_safe_free(s_log_safe_log_element_p);
         s_log_safe_log_element_p = s_log_safe_null;
     }

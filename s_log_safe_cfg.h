@@ -25,7 +25,7 @@ extern "C" {
 /* s_log_safe输出单个缓冲最大字节数 */
 #define S_LOG_SAFE_BUFF_LIMIT                   (1024)
 /* s_log_safe log缓冲 最大缓冲log条数 */
-#define S_LOG_SAFE_POOL_LIMIT                   (32)
+#define S_LOG_SAFE_POOL_LIMIT                   (512)
 
 /* 空闲间隔时间（单位ms）*/
 #define S_LOG_SAFE_OUTPUT_IDLE_TIME             (10)

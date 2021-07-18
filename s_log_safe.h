@@ -13,7 +13,7 @@ extern "C" {
 /**
  * s_log_safe版本号（V主版本号.次版本号.版本内修改序号）
  */
-#define S_LOG_SAFE_VERSION						"V0.0.3"
+#define S_LOG_SAFE_VERSION						"V0.0.4"
 
 #if S_LOG_SAFE_OPT_LVL >= S_LOG_SAFE_OPT_ASSERT
     #define s_log_safe_assert(tag, file, func,line, fmt, ...) \
@@ -82,7 +82,7 @@ typedef struct s_safe_tag_s {
 #define s_safe_tag_log_level_limit_set(log_level_limit_new) do {tag.log_level_limit = log_level_limit_new;}while(0)
 
 #define  s_safe_log_fmt_par(fmt,...) \
-char* __str__ = s_log_safe_malloc(sizeof(char)*S_LOG_SAFE_BUFF_LIMIT);\
+char* __str__ = (char*)s_log_safe_malloc(sizeof(char)*S_LOG_SAFE_BUFF_LIMIT);\
 snprintf(__str__,(S_LOG_SAFE_BUFF_LIMIT-1),fmt,__VA_ARGS__)
 
 #define  s_safe_log_out_par(__log_level__) \
