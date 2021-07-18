@@ -4,7 +4,7 @@
 void* thread_1_exec(void* arg)
 {
     int* count =  (int*)arg;
-    s_safe_tag("thread_1");
+    s_safe_tag("thread_1", S_LOG_SAFE_OPT_DEBUG);
 
     do {
         s_log_safe_a("%s %d","测试1",*count);
@@ -17,7 +17,7 @@ void* thread_1_exec(void* arg)
 void* thread_2_exec(void* arg)
 {
     int* count =  (int*)arg;
-    s_safe_tag("thread_2");
+    s_safe_tag("thread_2", S_LOG_SAFE_OPT_DEBUG);
 
     do {
         s_log_safe_v("%s %d","测试2",*count);
@@ -30,7 +30,7 @@ void* thread_2_exec(void* arg)
 void* thread_3_exec(void* arg)
 {
     int* count =  (int*)arg;
-    s_safe_tag("thread_3");
+    s_safe_tag("thread_3", S_LOG_SAFE_OPT_DEBUG);
 
     do {
         s_log_safe_e("%s %d","测试3",*count);
@@ -43,7 +43,7 @@ void* thread_3_exec(void* arg)
 void* thread_4_exec(void* arg)
 {
     int* count =  (int*)arg;
-    s_safe_tag("thread_4");
+    s_safe_tag("thread_4", S_LOG_SAFE_OPT_DEBUG);
 
     do {
         s_log_safe_w("%s %d","测试4",*count);
@@ -56,7 +56,7 @@ void* thread_4_exec(void* arg)
 void* thread_5_exec(void* arg)
 {
     int* count =  (int*)arg;
-    s_safe_tag("thread_5");
+    s_safe_tag("thread_5", S_LOG_SAFE_OPT_DEBUG);
 
     do {
         s_log_safe_t("%s %d","测试5",*count);
@@ -69,7 +69,7 @@ void* thread_5_exec(void* arg)
 void* thread_6_exec(void* arg)
 {
     int* count =  (int*)arg;
-    s_safe_tag("thread_6");
+    s_safe_tag("thread_6", S_LOG_SAFE_OPT_DEBUG);
 
     do {
         s_log_safe_i("%s %d","测试6",*count);
@@ -82,10 +82,15 @@ void* thread_6_exec(void* arg)
 void* thread_7_exec(void* arg)
 {
     int* count =  (int*)arg;
-    s_safe_tag("thread_7");
+    s_safe_tag("thread_7", S_LOG_SAFE_OPT_TRACE);
 
     do {
         s_log_safe_d("%s %d","测试7",*count);
+        if((*count)%8 == 0) {
+            s_safe_tag_log_level_limit_set(S_LOG_SAFE_OPT_DEBUG);
+        } else {
+            s_safe_tag_log_level_limit_set(S_LOG_SAFE_OPT_TRACE);
+        }
         usleep(5000);
     } while (*count -= 1);
 
@@ -97,7 +102,7 @@ void* thread_main_exec(void* arg)
     int count = 0;
     unsigned int log_safe_pool_cap = 0;
     unsigned int log_safe_pool_used = 0;
-    s_safe_tag("main");
+    s_safe_tag("main", S_LOG_SAFE_OPT_DEBUG);
 
     log_safe_pool_cap = s_log_safe_output_pool_cap_get();
     while(1) {

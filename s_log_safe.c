@@ -34,8 +34,9 @@ s_log_safe_constructor_out:
 
 static void s_log_safe_destructor(s_log_safe_t* s_log_safe_p)
 {
-    if(s_log_safe_null == s_log_safe_p)
-        return ;
+    if(s_log_safe_null == s_log_safe_p) {
+        return;
+    }
     return;
 }
 
@@ -139,6 +140,13 @@ static void* s_log_safe_thread_exec_func(void* arg)
 /*************************************** 外部接口 *************************************/
 
 /**
+ * 获取 s_log_safe 版本号
+ */
+const char* s_log_safe_version_get(void)
+{
+    return S_LOG_SAFE_VERSION;
+}
+/**
  * s_log_safe 初始化
  */
 int s_log_safe_init(void)
@@ -189,6 +197,7 @@ unsigned int s_log_safe_output_pool_used_get(void) {
  */
 int s_log_safe_out(const char*         tag,
                    const unsigned char log_level,
+                   const unsigned char log_level_limit,
                    const char*         log_file,
                    const char*         log_func,
                    const long          log_line,
@@ -197,6 +206,12 @@ int s_log_safe_out(const char*         tag,
     int ret = 0;
     int err = 0;
     unsigned int write_count = 0;
+    unsigned char log_level_limit_temp = log_level_limit;
+
+    log_level_limit_temp = (log_level_limit_temp > S_LOG_SAFE_OPT_DEBUG) ? (S_LOG_SAFE_OPT_DEBUG) : (log_level_limit_temp);
+    if(log_level > log_level_limit_temp) {
+        goto s_log_safe_out_out;
+    }
 
     s_log_safe_log_element_t* s_log_safe_log_element_p = s_log_safe_null;
     s_log_safe_log_element_p = s_log_safe_malloc(sizeof(s_log_safe_log_element_t));

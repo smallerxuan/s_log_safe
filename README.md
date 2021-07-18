@@ -55,3 +55,10 @@ s_log_safe中与平台相关的接口实现均在`s_log_safe_platform.h`和`s_lo
 
 ## github仓库
 https://github.com/smallerxuan/s_log_safe.git
+
+## 更新日志
+V0.0.1(first commit):  
+        首次发布，基础功能支持
+V0.0.2:  
+        支持tag log输出级别限制自定义，支持不同的tag设置不同的 log输出级别限制        
+
